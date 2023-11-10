@@ -1,0 +1,15 @@
+# Caminho completo para o arquivo .pfx do certificado
+$certFilePath = "C:\Caminho\para\certificado.pfx"
+
+# Senha do certificado (substitua 'SuaSenhaAqui' pela senha real)
+$certPassword = ConvertTo-SecureString -String "SuaSenhaAqui" -Force -AsPlainText
+try {
+
+# Importar o certificado PFX com a senha
+$cert = Import-PfxCertificate -FilePath $certFilePath -CertStoreLocation Cert:\CurrentUser\My -Password $certPassword -Exportable
+
+Write-Host "O certificado foi instalado com sucesso."
+} catch {
+
+Write-Host "Ocorreu um erro durante a instalação do certificado: $_"
+}
